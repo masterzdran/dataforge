@@ -10,4 +10,7 @@
     <Project Path="tests/DataForge.IntegrationTests/DataForge.IntegrationTests.csproj" />
     <Project Path="tests/DataForge.UnitTests/DataForge.UnitTests.csproj" />
   </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/DataForge.Samples/DataForge.Samples.csproj" />
+  </Folder>
 </Solution>

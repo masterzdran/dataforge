@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <SignAssembly>false</SignAssembly>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!-- ponytail: sample app skips StyleCop to keep it minimal. -->
+  <ItemGroup>
+    <PackageReference Remove="StyleCop.Analyzers" />
+    <AdditionalFiles Remove="$(MSBuildThisFileDirectory)../../build/stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DataForge\DataForge.csproj" />
+    <ProjectReference Include="..\..\src\DataForge.Abstractions\DataForge.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\DataForge.CountryProviders\DataForge.CountryProviders.csproj" />
+    <ProjectReference Include="..\..\src\DataForge.Generators\DataForge.Generators.csproj" />
+    <ProjectReference Include="..\..\src\DataForge.Extensions\DataForge.Extensions.csproj" />
+  </ItemGroup>
+
+</Project>
