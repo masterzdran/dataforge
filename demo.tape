@@ -4,6 +4,10 @@
 # Requires:     vhs + ffmpeg on PATH
 #   winget install charmbracelet.vhs
 #   winget install -e --id Gyan.FFmpeg
+# Note: needs vhs >= 0.12.1 — winget may still ship v0.12.0, which on
+# Windows silently fails to spawn ffmpeg (fixed in v0.12.1, issue #788).
+# If `vhs demo.tape` prints "Creating demo.mp4..." but writes no file,
+# grab the official Windows zip from github.com/charmbracelet/vhs/releases.
 # Shell: PowerShell — `type` is the Get-Content alias.
 
 Output demo.mp4

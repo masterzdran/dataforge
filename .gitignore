@@ -17,3 +17,8 @@ coverage*.json
 ## OS
 .DS_Store
 Thumbs.db
+
+## VHS demo render (keep demo.mp4 local; see demo.tape)
+demo.mp4
+demo.gif
+frames/
