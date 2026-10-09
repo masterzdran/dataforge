@@ -23,7 +23,9 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: |
+            8.0.x
+            10.0.x
 
       - name: Restore and build (warnings are errors)
         run: dotnet build DataForge.slnx -c ${{ env.CONFIGURATION }}
@@ -56,10 +58,13 @@ jobs:
 
   sonar:
     name: SonarQube analysis
-    if: ${{ secrets.SONAR_TOKEN != '' }}
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    # secrets are not available in job-level `if`; map the token to env and
+    # gate the scan step instead.
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -68,7 +73,9 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: |
+            8.0.x
+            10.0.x
 
       - name: Download coverage report
         uses: actions/download-artifact@v4
@@ -77,9 +84,8 @@ jobs:
           path: artifacts/coverage
 
       - name: SonarQube scan
+        if: env.SONAR_TOKEN != ''
         uses: SonarSource/sonarqube-scan-action@v6
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
             -Dsonar.host.url=https://sonarcloud.io
@@ -88,11 +94,15 @@ jobs:
 
   publish:
     name: Publish packages to NuGet
-    if: startsWith(github.ref, 'refs/tags/v') && ${{ secrets.NUGET_API_KEY != '' }}
+    if: startsWith(github.ref, 'refs/tags/v')
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # `nuget` must match the Environment on the nuget.org trusted publishing policy.
     environment: nuget
+    permissions:
+      id-token: write # required for NuGet Trusted Publishing (OIDC)
+      contents: read
     steps:
       - uses: actions/checkout@v4
 
@@ -102,9 +112,16 @@ jobs:
           name: packages
           path: artifacts/packages
 
+      - name: NuGet login (OIDC -> short-lived API key)
+        id: login
+        uses: NuGet/login@v1
+        with:
+          # NUGET_USER is the nuget.org profile name, NOT the email address.
+          user: ${{ secrets.NUGET_USER }}
+
       - name: Push to NuGet
         run: >
           dotnet nuget push "artifacts/packages/*.nupkg"
-          --api-key ${{ secrets.NUGET_API_KEY }}
+          --api-key ${{ steps.login.outputs.NUGET_API_KEY }}
           --source https://api.nuget.org/v3/index.json
           --skip-duplicate
