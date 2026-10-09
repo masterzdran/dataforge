@@ -1,0 +1,12 @@
+<Project>
+
+  <Import Project="../Directory.Build.props" />
+
+  <!-- ponytail: samples opt out of StyleCop. File-based sample apps (samples/Basic.cs)
+       have no csproj to remove it, so it is removed subtree-wide. -->
+  <ItemGroup>
+    <PackageReference Remove="StyleCop.Analyzers" />
+    <AdditionalFiles Remove="$(MSBuildThisFileDirectory)../build/stylecop.json" />
+  </ItemGroup>
+
+</Project>
