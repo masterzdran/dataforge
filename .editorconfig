@@ -1,0 +1,34 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+tab_width = 4
+
+[*.{cs,csx}]
+indent_size = 4
+csharp_using_directive_placement = outside_namespace:error
+csharp_prefer_braces = true:error
+csharp_style_namespace_declarations = block_scoped:error
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+
+# StyleCop rules disabled deliberately:
+dotnet_diagnostic.SA1101.severity = none    # this. prefix not used (Microsoft convention)
+dotnet_diagnostic.SA1200.severity = none    # using directives placed outside namespace
+dotnet_diagnostic.SA1309.severity = none    # private fields use _camelCase (repository convention)
+dotnet_diagnostic.SA1633.severity = none    # no per-file copyright header
+dotnet_diagnostic.SA1122.severity = none    # "" accepted over string.Empty
+dotnet_diagnostic.SA1413.severity = none    # trailing commas in initializers optional
+dotnet_diagnostic.SA1649.severity = none    # file name may not match first type in edge cases
+dotnet_diagnostic.SA1638.severity = none    # multiple types per file allowed for tiny related types
+
+[*.{xml,csproj,props,targets,yml,yaml,json}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false

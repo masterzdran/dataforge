@@ -1,0 +1,28 @@
+<Project>
+
+  <!--
+    Shared build settings for every project in the repository.
+    Target frameworks, packaging and signing live in src/ and tests/ Directory.Build.props.
+  -->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <!-- ponytail: nullable annotations off; netstandard2.0 + XML docs + analyzers already lock the public surface -->
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <DebugType>portable</DebugType>
+    <Deterministic>true</Deterministic>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisMode>Default</AnalysisMode>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)build/stylecop.json" />
+  </ItemGroup>
+
+</Project>

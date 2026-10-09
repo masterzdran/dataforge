@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>DataForge</RootNamespace>
+    <AssemblyName>DataForge</AssemblyName>
+    <Description>DataForge is a lightweight, extensible, enterprise-ready synthetic test data generator for .NET with deterministic, country-specific data.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataForge.Abstractions\DataForge.Abstractions.csproj" />
+    <ProjectReference Include="..\DataForge.CountryProviders\DataForge.CountryProviders.csproj" />
+    <ProjectReference Include="..\DataForge.Generators\DataForge.Generators.csproj" />
+  </ItemGroup>
+
+</Project>

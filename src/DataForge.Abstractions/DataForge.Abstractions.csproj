@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>DataForge</RootNamespace>
+    <AssemblyName>DataForge.Abstractions</AssemblyName>
+    <Description>Core abstractions, domain models and extensibility contracts for DataForge, a deterministic synthetic test data generator.</Description>
+  </PropertyGroup>
+
+</Project>

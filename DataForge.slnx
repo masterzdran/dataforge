@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DataForge.Abstractions/DataForge.Abstractions.csproj" />
+    <Project Path="src/DataForge.CountryProviders/DataForge.CountryProviders.csproj" />
+    <Project Path="src/DataForge.Extensions/DataForge.Extensions.csproj" />
+    <Project Path="src/DataForge.Generators/DataForge.Generators.csproj" />
+    <Project Path="src/DataForge/DataForge.csproj" />
+  </Folder>
+</Solution>
