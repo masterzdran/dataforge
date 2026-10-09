@@ -12,5 +12,6 @@
   </Folder>
   <Folder Name="/samples/">
     <Project Path="samples/DataForger.Samples/DataForger.Samples.csproj" />
+    <Project Path="samples/DataForger.Demo/DataForger.Demo.csproj" />
   </Folder>
 </Solution>
