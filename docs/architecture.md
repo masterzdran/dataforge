@@ -35,7 +35,7 @@ src/
   DataForge/                 Forge facade, GenerationContext, DeterministicRandom
   DataForge.Extensions/      optional extension methods (WithSeed(string))
 tests/
-  DataForge.UnitTests/        unit tests (xUnit + FluentAssertions), coverage gate 90%
+  DataForge.UnitTests/        unit tests (xUnit + FluentAssertions)
   DataForge.IntegrationTests/ end-to-end tests: 100k-volume, cross-country determinism,
                              custom generator + provider capability flows
 ```

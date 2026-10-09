@@ -28,7 +28,7 @@ var customers = Forge.ForCountry(Country.BR).WithSeed(42).Create<Customer>(1000)
 - **Extensible** — implement `IDataGenerator<T>` or `ICountryDataProvider` and plug into the
   fluent API; optional provider capabilities (e.g. `IPersonTaxIdentifierProvider`) can grow
   without breaking changes.
-- **Enterprise-ready** — strong-named, XML-documented, StyleCop-clean, 90%+ line coverage,
+- **Enterprise-ready** — strong-named, XML-documented, StyleCop-clean,
   SourceLink-enabled, zero compiler warnings, and a CI pipeline in this repository.
 
 ## Getting started
@@ -105,12 +105,10 @@ before generating from multiple threads.
 ```bash
 dotnet build DataForge.slnx
 dotnet test DataForge.slnx
-dotnet test tests/DataForge.UnitTests -f net10.0 -p:CollectCoverage=true   # coverage gate
 dotnet pack DataForge.slnx -c Release
 ```
 
-Coverage thresholds (90% line) are enforced when `CollectCoverage` is enabled; reports land in
-`artifacts/coverage/` and packages in `artifacts/packages/`.
+Packages land in `artifacts/packages/`.
 
 ## License
 

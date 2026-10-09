@@ -1,6 +1,6 @@
 # Contributing to DataForge
 
-Thanks for helping. Keep the bar: **CI green, zero warnings, ≥90% line coverage, StyleCop clean.**
+Thanks for helping. Keep the bar: **CI green, zero warnings, StyleCop clean.**
 
 ## Development environment
 
@@ -13,15 +13,6 @@ Thanks for helping. Keep the bar: **CI green, zero warnings, ≥90% line coverag
 dotnet build DataForge.slnx          # must succeed with 0 errors and 0 warnings
 dotnet test DataForge.slnx           # unit + integration tests, all TFMs
 ```
-
-Coverage gate (repository-local threshold, run in CI):
-
-```bash
-dotnet test tests/DataForge.UnitTests -f net10.0 -p:CollectCoverage=true
-```
-
-The `Threshold=90` (line, total) is enforced by coverlet; the opencover report is written to
-`artifacts/coverage/`.
 
 ## Style and conventions
 
@@ -40,8 +31,8 @@ The `Threshold=90` (line, total) is enforced by coverlet; the opencover report i
 1. Fork, branch, commit with clear messages (Conventional Commits preferred:
    `feat:`, `fix:`, `docs:`, `test:`, `chore:`).
 2. Add tests that fail without your change and pass with it. New behavior needs both unit and,
-   where relevant, integration coverage.
-3. Run the full build + tests + coverage gate locally.
+   where relevant, integration tests.
+3. Run the full build + tests locally.
 4. Open a pull request; the GitHub Actions workflow runs the same gates.
 
 ## Adding a country

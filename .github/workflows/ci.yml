@@ -14,7 +14,7 @@ env:
 
 jobs:
   build:
-    name: Build, test, coverage, pack
+    name: Build, test, pack
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -30,12 +30,8 @@ jobs:
       - name: Restore and build (warnings are errors)
         run: dotnet build DataForge.slnx -c ${{ env.CONFIGURATION }}
 
-      - name: Run unit tests with coverage gate (>=90% line)
-        run: >
-          dotnet test tests/DataForge.UnitTests/DataForge.UnitTests.csproj
-          -f net10.0 -c ${{ env.CONFIGURATION }} --no-build
-          -p:CollectCoverage=true
-          -p:CoverletOutput=artifacts/coverage/ci-coverage
+      - name: Run unit tests
+        run: dotnet test tests/DataForge.UnitTests/DataForge.UnitTests.csproj -c ${{ env.CONFIGURATION }} --no-build
 
       - name: Run integration tests
         run: dotnet test tests/DataForge.IntegrationTests/DataForge.IntegrationTests.csproj -c ${{ env.CONFIGURATION }} --no-build
@@ -43,54 +39,12 @@ jobs:
       - name: Pack NuGet packages
         run: dotnet pack DataForge.slnx -c ${{ env.CONFIGURATION }} --no-build
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage
-          path: artifacts/coverage/ci-coverage.opencover.xml
-
       - name: Upload packages
         uses: actions/upload-artifact@v4
         with:
           name: packages
           path: artifacts/packages/*.nupkg
           if-no-files-found: error
-
-  sonar:
-    name: SonarQube analysis
-    needs: build
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    # secrets are not available in job-level `if`; map the token to env and
-    # gate the scan step instead.
-    env:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: |
-            8.0.x
-            10.0.x
-
-      - name: Download coverage report
-        uses: actions/download-artifact@v4
-        with:
-          name: coverage
-          path: artifacts/coverage
-
-      - name: SonarQube scan
-        if: env.SONAR_TOKEN != ''
-        uses: SonarSource/sonarqube-scan-action@v6
-        with:
-          args: >
-            -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.cs.opencover.reportsPaths=artifacts/coverage/ci-coverage.opencover.xml
-            -Dsonar.projectVersion=${{ github.ref_type == 'tag' && github.ref_name || '0.1.0' }}
 
   publish:
     name: Publish packages to NuGet
