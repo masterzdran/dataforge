@@ -1,0 +1,9 @@
+# Normalize line endings; the repository uses LF (see .editorconfig).
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.snk binary
+*.pfx binary

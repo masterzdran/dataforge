@@ -89,12 +89,19 @@ namespace DataForge
         /// Custom generators are invoked by reflection; prefer built-in generators for very large volumes.
         /// </remarks>
         public Forge Register<TGenerator>()
-            where TGenerator : class, new()
+            where TGenerator : class
         {
             var generatorType = typeof(TGenerator);
             var outputType = ResolveOutputType(generatorType);
             var generateMethod = typeof(IDataGenerator<>).MakeGenericType(outputType).GetMethod("Generate");
             var contextConstructor = generatorType.GetConstructor(new[] { typeof(IGenerationContext) });
+            var defaultConstructor = generatorType.GetConstructor(Type.EmptyTypes);
+
+            if (contextConstructor == null && defaultConstructor == null)
+            {
+                throw new InvalidOperationException(
+                    "Type '" + generatorType.FullName + "' must declare either a public parameterless constructor or a public constructor taking IGenerationContext.");
+            }
 
             Func<IGenerationContext, object> factory;
             if (contextConstructor != null)
@@ -103,7 +110,7 @@ namespace DataForge
             }
             else
             {
-                factory = context => generateMethod.Invoke(new TGenerator(), null);
+                factory = context => generateMethod.Invoke(defaultConstructor.Invoke(null), null);
             }
 
             _factories[outputType] = factory;
@@ -200,7 +207,8 @@ namespace DataForge
         {
             if (_factories.TryGetValue(typeof(T), out var factory))
             {
-                return (Func<IGenerationContext, T>)factory;
+                // ponytail: delegate types are invariant; wrap instead of casting the Func<> itself.
+                return context => (T)factory(context);
             }
 
             throw new InvalidOperationException(

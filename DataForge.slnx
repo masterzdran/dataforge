@@ -6,4 +6,8 @@
     <Project Path="src/DataForge.Generators/DataForge.Generators.csproj" />
     <Project Path="src/DataForge/DataForge.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DataForge.IntegrationTests/DataForge.IntegrationTests.csproj" />
+    <Project Path="tests/DataForge.UnitTests/DataForge.UnitTests.csproj" />
+  </Folder>
 </Solution>

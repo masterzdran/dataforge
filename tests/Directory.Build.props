@@ -10,4 +10,10 @@
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
+  <!-- ponytail: test code skips StyleCop; it adds noise without value for fixtures. -->
+  <ItemGroup>
+    <PackageReference Remove="StyleCop.Analyzers" />
+    <AdditionalFiles Remove="$(MSBuildThisFileDirectory)../build/stylecop.json" />
+  </ItemGroup>
+
 </Project>
