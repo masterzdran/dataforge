@@ -6,21 +6,21 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)../build/DataForge.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)../build/DataForger.snk</AssemblyOriginatorKeyFile>
 
     <!-- NuGet package metadata -->
     <IsPackable>true</IsPackable>
-    <Authors>DataForge Contributors</Authors>
-    <Company>DataForge</Company>
-    <Product>DataForge</Product>
-    <Copyright>Copyright (c) DataForge Contributors</Copyright>
+    <Authors>DataForger Contributors</Authors>
+    <Company>DataForger</Company>
+    <Product>DataForger</Product>
+    <Copyright>Copyright (c) DataForger Contributors</Copyright>
     <Version>0.1.0</Version>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <FileVersion>0.1.0.0</FileVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/dataforge/dataforge</PackageProjectUrl>
-    <PackageIcon>dataforge.64.png</PackageIcon>
-    <RepositoryUrl>https://github.com/dataforge/dataforge</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/masterzdran/dataforge</PackageProjectUrl>
+    <PackageIcon>dataforger.64.png</PackageIcon>
+    <RepositoryUrl>https://github.com/masterzdran/dataforge</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -38,7 +38,7 @@
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)../README.md" Pack="true" PackagePath="\" />
     <None Include="$(MSBuildThisFileDirectory)../LICENSE" Pack="true" PackagePath="\" />
-    <None Include="$(MSBuildThisFileDirectory)../images/dataforge.64.png" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)../images/dataforger.64.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

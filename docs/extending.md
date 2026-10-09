@@ -1,8 +1,8 @@
-# Extending DataForge
+# Extending DataForger
 
 Three extension points cover almost everything:
 
-1. **Custom entity generator** — produce data for a type DataForge does not ship.
+1. **Custom entity generator** — produce data for a type DataForger does not ship.
 2. **Custom provider / new country** — add a country or change how a country's primitives look.
 3. **Provider capabilities** — expose optional country-specific features without breaking changes.
 

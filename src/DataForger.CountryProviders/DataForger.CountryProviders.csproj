@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>DataForger</RootNamespace>
+    <AssemblyName>DataForger.CountryProviders</AssemblyName>
+    <Description>Country-specific data providers for DataForger (Portugal, Spain, United Kingdom, France, Germany, United States, Brazil).</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataForger.Abstractions\DataForger.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

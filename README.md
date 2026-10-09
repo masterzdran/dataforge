@@ -1,20 +1,20 @@
-# DataForge
+# DataForger
 
 A lightweight, extensible, enterprise-ready synthetic test data generation library for .NET.
 
-DataForge creates **deterministic, country-specific, clearly synthetic** data — no real personal
+DataForger creates **deterministic, country-specific, clearly synthetic** data — no real personal
 information is ever used, no network or file access happens at runtime, and the same seed always
 produces the same dataset. It targets **.NET Standard 2.0** and is thread-safe and DI-friendly.
 
 ```csharp
-using DataForge;
+using DataForger;
 
 var customer = Forge.ForCountry(Country.PT).WithSeed(1234).Create<Customer>();
 
 var customers = Forge.ForCountry(Country.BR).WithSeed(42).Create<Customer>(1000);
 ```
 
-## Why DataForge?
+## Why DataForger?
 
 - **Deterministic** — the same seed + country + entity type always yields the same data. Dates are
   anchored to a fixed epoch (2025-01-01 UTC), so results never depend on the wall clock and are
@@ -34,11 +34,11 @@ var customers = Forge.ForCountry(Country.BR).WithSeed(42).Create<Customer>(1000)
 ## Getting started
 
 1. Reference the packages from your project (or add project references to `src/`):
-   - `DataForge` — the fluent entry point.
-   - `DataForge.Abstractions` — entities, interfaces, enums (reference this in extension libraries).
-   - `DataForge.CountryProviders` — the built-in country data providers.
-   - `DataForge.Generators` — the built-in entity generators.
-   - `DataForge.Extensions` — optional extension methods (e.g. `WithSeed(string)`).
+   - `DataForger` — the fluent entry point.
+   - `DataForger.Abstractions` — entities, interfaces, enums (reference this in extension libraries).
+   - `DataForger.CountryProviders` — the built-in country data providers.
+   - `DataForger.Generators` — the built-in entity generators.
+   - `DataForger.Extensions` — optional extension methods (e.g. `WithSeed(string)`).
 
 2. Build a `Forge` for a country and generate:
 
@@ -55,9 +55,9 @@ var products = Forge.ForCountry(Country.DE).WithSeed("demo-fixture").Create<Prod
 
 3. Use the entities in your tests, demos or development databases.
 
-> **Note on the entry point name.** The original specification used `DataForge.ForCountry(...)`,
+> **Note on the entry point name.** The original specification used `DataForger.ForCountry(...)`,
 > but C# forbids a type and a namespace from sharing a name, so the facade is the static class
-> `Forge` in the `DataForge` namespace: `Forge.ForCountry(Country.PT)`. Everything else in the
+> `Forge` in the `DataForger` namespace: `Forge.ForCountry(Country.PT)`. Everything else in the
 > public API matches the specification.
 
 ## Built-in entities
@@ -96,19 +96,23 @@ before generating from multiple threads.
 
 - [Architecture overview](docs/architecture.md)
 - [Public API reference](docs/api.md)
-- [Extending DataForge](docs/extending.md) — custom generators, providers and capabilities
+- [Extending DataForger](docs/extending.md) — custom generators, providers and capabilities
 - [Security considerations](docs/security.md) — threat model, misuse, validation, determinism
 - [Contributing](CONTRIBUTING.md)
 
 ## Building and testing
 
 ```bash
-dotnet build DataForge.slnx
-dotnet test DataForge.slnx
-dotnet pack DataForge.slnx -c Release
+dotnet build DataForger.slnx
+dotnet test DataForger.slnx
+dotnet pack DataForger.slnx -c Release
 ```
 
 Packages land in `artifacts/packages/`.
+
+## Icons
+
+Package icons: <a href="https://www.flaticon.com/free-icons/forging" title="forging icons">Forging icons created by Nikita Golubev - Flaticon</a>
 
 ## License
 

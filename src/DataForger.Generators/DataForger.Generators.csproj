@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>DataForger</RootNamespace>
+    <AssemblyName>DataForger.Generators</AssemblyName>
+    <Description>Built-in entity generators for DataForger (person, address, company, customer, contract, product).</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataForger.Abstractions\DataForger.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

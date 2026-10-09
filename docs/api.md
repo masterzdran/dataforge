@@ -1,6 +1,6 @@
 # Public API reference
 
-All public types are in the `DataForge` namespace. XML documentation is embedded in every
+All public types are in the `DataForger` namespace. XML documentation is embedded in every
 assembly, so IntelliSense shows the full contract; this page is a compact map.
 
 ## Entry point: `Forge`
@@ -26,7 +26,7 @@ public IReadOnlyCollection<T> Create<T>(int count) where T : class
   not at all, or that lack a public parameterless constructor or a public
   `IGenerationContext`-taking constructor.
 
-## Extensions (`DataForge.Extensions`)
+## Extensions (`DataForger.Extensions`)
 
 ```csharp
 public static Forge WithSeed(this Forge forge, string seed)   // FNV-1a hash → stable int seed

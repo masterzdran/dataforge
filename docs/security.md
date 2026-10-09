@@ -1,6 +1,6 @@
 # Security considerations
 
-DataForge generates synthetic test data. It aims to be safe **by construction**: no real personal
+DataForger generates synthetic test data. It aims to be safe **by construction**: no real personal
 data, no network, no file access, no reflection in the hot path, deterministic and threadsafe. This
 document records the threat model, misuse scenarios, the validation guarantees and the design
 choices behind them.
@@ -37,7 +37,7 @@ choices behind them.
 - **Using output as real production data.** Not supported. SSN-like, NIF, DNI, CPF etc. are
   structurally valid but **not issued** numbers; treat them as test fixtures only. Do not route
   them through identity-checking services.
-- **Using DataForge to probe real check-digit schemes.** The formats are public knowledge and the
+- **Using DataForger to probe real check-digit schemes.** The formats are public knowledge and the
   generated numbers are synthetic; any resemblance to an existing number is a coincidence.
 - **Guessing/collision guarantees.** Collisions within a seed are possible for short codes
   (postal codes, phone numbers). They are bounded by the format's alphabet size. For keys that
@@ -82,12 +82,12 @@ prove internal consistency, not real existence.
 Determinism is a feature, but consider the implications:
 
 - **Replay across security boundaries.** If the seed is known, all "random" values are
-  predictable. Never seed with a secret or use DataForge for anything that requires
+  predictable. Never seed with a secret or use DataForger for anything that requires
   unpredictability.
 - **Culture sensitivity.** String formatting uses the provider implementation; built-ins avoid
   culture-dependent output so the same seed yields the same strings everywhere.
 - **Versioning.** The exact sequence for a given seed is tied to this implementation. If you need
-  byte-for-byte stability across DataForge versions, pin the version and record it in your
+  byte-for-byte stability across DataForger versions, pin the version and record it in your
   fixtures. A future release that fixes a name pool or check-digit rule will change output — by
   design.
 
@@ -97,7 +97,7 @@ Determinism is a feature, but consider the implications:
   build-time analyzers and SourceLink (`StyleCop.Analyzers`, `Microsoft.SourceLink.GitHub`).
 - A dependency scan (GitHub Dependabot, NuGet audit) applies to the tooling packages only and
   cannot affect runtime attack surface.
-- The strong-name key (`build/DataForge.snk`) is committed deliberately so anyone can verify
+- The strong-name key (`build/DataForger.snk`) is committed deliberately so anyone can verify
   assemblies signed by CI; it is the public trust anchor for the package identity, not a secret.
 
 ## Supply-chain notes for consumers

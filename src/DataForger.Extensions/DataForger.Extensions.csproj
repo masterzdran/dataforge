@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>DataForger</RootNamespace>
+    <AssemblyName>DataForger.Extensions</AssemblyName>
+    <Description>Convenience extensions for DataForger, including string-based deterministic seeds.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataForger\DataForger.csproj" />
+    <ProjectReference Include="..\DataForger.Abstractions\DataForger.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

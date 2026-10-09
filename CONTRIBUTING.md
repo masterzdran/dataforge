@@ -1,4 +1,4 @@
-# Contributing to DataForge
+# Contributing to DataForger
 
 Thanks for helping. Keep the bar: **CI green, zero warnings, StyleCop clean.**
 
@@ -10,8 +10,8 @@ Thanks for helping. Keep the bar: **CI green, zero warnings, StyleCop clean.**
 ## Getting started
 
 ```bash
-dotnet build DataForge.slnx          # must succeed with 0 errors and 0 warnings
-dotnet test DataForge.slnx           # unit + integration tests, all TFMs
+dotnet build DataForger.slnx          # must succeed with 0 errors and 0 warnings
+dotnet test DataForger.slnx           # unit + integration tests, all TFMs
 ```
 
 ## Style and conventions
@@ -37,8 +37,8 @@ dotnet test DataForge.slnx           # unit + integration tests, all TFMs
 
 ## Adding a country
 
-1. Add the value to `Country` in `src/DataForge.Abstractions/Country.cs`.
-2. Create a provider in `src/DataForge.CountryProviders/` deriving from `CountryDataProvider`
+1. Add the value to `Country` in `src/DataForger.Abstractions/Country.cs`.
+2. Create a provider in `src/DataForger.CountryProviders/` deriving from `CountryDataProvider`
    (constructor-injected name arrays + formats). Implement `GetTaxIdentifier`; implement
    `IPersonTaxIdentifierProvider` when the country has a person-level id.
 3. Register it in `CountryDataProviderRegistry`.

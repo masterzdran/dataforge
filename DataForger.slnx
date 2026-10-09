@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DataForger.Abstractions/DataForger.Abstractions.csproj" />
+    <Project Path="src/DataForger.CountryProviders/DataForger.CountryProviders.csproj" />
+    <Project Path="src/DataForger.Extensions/DataForger.Extensions.csproj" />
+    <Project Path="src/DataForger.Generators/DataForger.Generators.csproj" />
+    <Project Path="src/DataForger/DataForger.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DataForger.IntegrationTests/DataForger.IntegrationTests.csproj" />
+    <Project Path="tests/DataForger.UnitTests/DataForger.UnitTests.csproj" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/DataForger.Samples/DataForger.Samples.csproj" />
+  </Folder>
+</Solution>

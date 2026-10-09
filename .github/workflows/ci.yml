@@ -28,16 +28,16 @@ jobs:
             10.0.x
 
       - name: Restore and build (warnings are errors)
-        run: dotnet build DataForge.slnx -c ${{ env.CONFIGURATION }}
+        run: dotnet build DataForger.slnx -c ${{ env.CONFIGURATION }}
 
       - name: Run unit tests
-        run: dotnet test tests/DataForge.UnitTests/DataForge.UnitTests.csproj -c ${{ env.CONFIGURATION }} --no-build
+        run: dotnet test tests/DataForger.UnitTests/DataForger.UnitTests.csproj -c ${{ env.CONFIGURATION }} --no-build
 
       - name: Run integration tests
-        run: dotnet test tests/DataForge.IntegrationTests/DataForge.IntegrationTests.csproj -c ${{ env.CONFIGURATION }} --no-build
+        run: dotnet test tests/DataForger.IntegrationTests/DataForger.IntegrationTests.csproj -c ${{ env.CONFIGURATION }} --no-build
 
       - name: Pack NuGet packages
-        run: dotnet pack DataForge.slnx -c ${{ env.CONFIGURATION }} --no-build
+        run: dotnet pack DataForger.slnx -c ${{ env.CONFIGURATION }} --no-build
 
       - name: Upload packages
         uses: actions/upload-artifact@v4

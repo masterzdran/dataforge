@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>DataForger</RootNamespace>
+    <AssemblyName>DataForger</AssemblyName>
+    <Description>DataForger is a lightweight, extensible, enterprise-ready synthetic test data generator for .NET with deterministic, country-specific data.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataForger.Abstractions\DataForger.Abstractions.csproj" />
+    <ProjectReference Include="..\DataForger.CountryProviders\DataForger.CountryProviders.csproj" />
+    <ProjectReference Include="..\DataForger.Generators\DataForger.Generators.csproj" />
+  </ItemGroup>
+
+</Project>

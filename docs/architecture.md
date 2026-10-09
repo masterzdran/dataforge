@@ -2,7 +2,7 @@
 
 ## Overview
 
-DataForge is a small, layered library built on SOLID principles. The core idea: a **country data
+DataForger is a small, layered library built on SOLID principles. The core idea: a **country data
 provider** supplies primitive, country-specific values and formats; **entity generators** compose
 those primitives into business entities; and a **fluent facade** (`Forge`) wires both together
 with deterministic randomness and a plug-in registry.
@@ -24,28 +24,28 @@ with deterministic randomness and a plug-in registry.
 
 ```
 src/
-  DataForge.Abstractions/    models (Person, Address, Company, Customer, Contract, Product),
+  DataForger.Abstractions/    models (Person, Address, Company, Customer, Contract, Product),
                              Country/Gender/ContractStatus enums, IGenerationContext,
                              ICountryDataProvider, ICountryDataProviderRegistry,
                              IDataGenerator<T>, IPersonTaxIdentifierProvider
-  DataForge.CountryProviders/ CountryDataProvider base class, CheckDigits helpers,
+  DataForger.CountryProviders/ CountryDataProvider base class, CheckDigits helpers,
                              registry, one provider per country (PT, ES, UK, FR, DE, US, BR)
-  DataForge.Generators/      one generator per entity + SyntheticText (emails, SKUs, ...)
+  DataForger.Generators/      one generator per entity + SyntheticText (emails, SKUs, ...)
                              and GenerationDates (fixed date anchors)
-  DataForge/                 Forge facade, GenerationContext, DeterministicRandom
-  DataForge.Extensions/      optional extension methods (WithSeed(string))
+  DataForger/                 Forge facade, GenerationContext, DeterministicRandom
+  DataForger.Extensions/      optional extension methods (WithSeed(string))
 tests/
-  DataForge.UnitTests/        unit tests (xUnit + FluentAssertions)
-  DataForge.IntegrationTests/ end-to-end tests: 100k-volume, cross-country determinism,
+  DataForger.UnitTests/        unit tests (xUnit + FluentAssertions)
+  DataForger.IntegrationTests/ end-to-end tests: 100k-volume, cross-country determinism,
                              custom generator + provider capability flows
 ```
 
-All public types live in the `DataForge` namespace regardless of assembly, keeping the public
+All public types live in the `DataForger` namespace regardless of assembly, keeping the public
 surface flat and easy to consume.
 
 ## Layers and responsibilities
 
-### Abstractions (`DataForge.Abstractions`)
+### Abstractions (`DataForger.Abstractions`)
 
 - Domain models are plain classes with settable properties so custom generators stay simple.
 - `ICountryDataProvider` returns **primitives only** (names, postal codes, phone numbers, tax
@@ -56,7 +56,7 @@ surface flat and easy to consume.
 - `IGenerationContext` carries the selected country, provider and a deterministic random source
   to every generator.
 
-### Country providers (`DataForge.CountryProviders`)
+### Country providers (`DataForger.CountryProviders`)
 
 - `CountryDataProvider` is a base class driven by constructor-injected name arrays and format
   templates (`#` expands to a random digit), so a new country is mostly data + a few rules.
@@ -74,7 +74,7 @@ surface flat and easy to consume.
 | DE | — | USt-IdNr-like (`DE` + 9 digits) |
 | UK | — | Companies House-like (`SC`, `NI` or `OC` + 6 digits) |
 
-### Generators (`DataForge.Generators`)
+### Generators (`DataForger.Generators`)
 
 Each generator takes an `IGenerationContext` in its constructor and implements
 `IDataGenerator<T>` with a single `Generate()`. They compose provider primitives into entities
@@ -86,7 +86,7 @@ and own the cross-cutting rules:
 - dates come from `GenerationDates`, anchored to a fixed epoch (`2025-01-01 UTC`) — never the
   wall clock.
 
-### Core (`DataForge`)
+### Core (`DataForger`)
 
 - `Forge` is the facade: `ForCountry(...)` entry points, `WithSeed(...)`, `Register<TGenerator>()`
   and `Create<T>(...)`. Registrations live in a `ConcurrentDictionary<Type, Func<...>>`; the seed
@@ -126,9 +126,9 @@ seed from `Guid.NewGuid()`. Every context gets a fresh `DeterministicRandom(seed
 
 ## Design decisions worth knowing
 
-- **`Forge`, not `DataForge`:** the specification's `DataForge.ForCountry(...)` cannot compile
+- **`Forge`, not `DataForger`:** the specification's `DataForger.ForCountry(...)` cannot compile
   because C# forbids a type and its containing namespace from sharing a name. The facade is the
-  static class `Forge` in the `DataForge` namespace.
+  static class `Forge` in the `DataForger` namespace.
 - **No external dependencies at runtime.** The only dependencies are analyzer/SourceLink
   packages, all `PrivateAssets="all"`.
 - **Primitive-only providers** keep the providers isolated from entities (separation of
